@@ -1,15 +1,14 @@
 package com.unow.service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+
+import com.unow.common.ExceptionEnum;
+import com.unow.common.MyException;
 import com.unow.mapper.CourseMapper;
 import com.unow.pojo.Course;
-import com.unow.vo.CourseResult;
 import com.unow.vo.NodeBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import tk.mybatis.mapper.entity.Example;
 
 import java.beans.Transient;
 import java.util.Date;
@@ -39,7 +38,7 @@ public class CourseService {
         course.setPid(pid);
         List<Course> list = courseMapper.select(course);
         if(CollectionUtils.isEmpty(list)){
-
+            throw new MyException(ExceptionEnum.NOT_NODES);
         }
         return list;
     }
@@ -62,7 +61,7 @@ public class CourseService {
             courseMapper.updateParentStatus(nodeBody.getPid(),true);
         }
         if(insert != 1){
-
+            throw new MyException(ExceptionEnum.ERROR_INSERT_NODES)
         }
         return course;
     }
@@ -81,7 +80,7 @@ public class CourseService {
         course.setRecentTime(new Date());
         int i = courseMapper.updateByPrimaryKeySelective(course);
         if(i != 1){
-
+            throw new MyException(ExceptionEnum.ERROR_UPDATE_NODES);
         }
         return course;
     }
@@ -93,7 +92,7 @@ public class CourseService {
         int i = courseMapper.deleteByPrimaryKey(id);
         courseMapper.deleteNodesByPid(id);
         if(i != 1) {
-
+            throw new MyException(ExceptionEnum.ERROR_DELETE_NODES);
         }
 
     }
