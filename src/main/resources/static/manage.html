@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="public/bootstrap/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="public/css/dashboard.css">
+    <!--bootstrap-treeview start-->
+    <link rel="stylesheet" type="text/css" href="public/plugins/bootstrap-treeview/bootstrap-treeview.min.css">
+    <!--bootstrap-treeview end-->
+    <!--bootstrap-dialog start-->
+    <link rel="stylesheet" type="text/css" href="public/plugins/bootstrap-dialog/bootstrap-dialog.min.css">
+    <!--bootstrap-dialog end-->
+	<style type="text/css">
+		.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+			background-color: #222222; 
+			cursor:default;
+
+		}
+		#setting{
+			cursor:pointer;
+		}
+	</style>
+</head>
+	
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">课程学科管理系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+  <!--           <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li> -->
+            <li><a href="#">about me</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" >
+          <ul class="nav nav-sidebar">
+            <li class="first active" style="background: #222222; ">
+              <a href="#">
+                <h4 style="color: #f5f5f5;">学科概览
+                <span id="setting" class="glyphicon glyphicon-cog pull-right "></span>
+                </h4> 
+              </a>
+            </li>
+            <li>
+              <div id="left-tree" ></div>
+            </li>
+          
+          </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">学科：<span id="headTitle"></span></h1>
+          
+          <div class="row" id="editShow">
+            <div class="col-sm-5 col-md-5">
+                  <div class="input-group margin-t-5">
+                      <span class="input-group-addon" >名称:</span>
+
+                      <input id="editName" type="text"  class="form-control" />
+                  </div>
+            </div>
+            <div class="col-sm-7 col-md-7">
+                  <button id="Edit" type='button' class='edit btn btn-info btn-md'>
+                    <span  class='glyphicon glyphicon-pencil' ></span>  修改学科
+                  </button>
+                  <button id="btnMove" type='button' class='del btn btn-success btn-md'>
+                    <span class='glyphicon glyphicon-retweet'></span>  移动学科
+                  </button>
+                  <button id="btnDel" type='button' class='del btn btn-danger btn-md'>
+                    <span class='glyphicon glyphicon-trash'></span>  删除学科
+                  </button>
+              </div>           
+          </div>
+          
+          <hr>
+          <button id="btnAdd" type="button" class="btn btn-primary btn-md " >
+            <span class="glyphicon glyphicon-plus"></span> 新增子学科
+          </button>
+          <h2 class="sub-header"></h2>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <caption style="text-align: center;">子课程学科详情</caption>
+              <thead>
+                <tr>
+                  <th>学科范畴</th>
+                  <th>课程学科名</th>
+                  <th>创建时间</th>
+                  <th>上次修改时间</th>
+                </tr>
+              </thead>
+              <!-- 主要显示数据的地方 -->
+              <tbody id="content">
+               
+              </tbody>
+            </table>
+
+                <ul class="pager">
+                  <li  id="pre"><a href="#">上一页</a></li>
+                  <li>当前页：<span id="viewpage">1</span></li>
+                  <li  id="next"><a href="#">下一页</a></li>
+                </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--弹出框 新增权限 start-->
+    <div class="modal fade" id="addOperation-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content radius_5">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">新增</h4>
+          </div>
+          <div class="modal-body">
+            <div group="" item="add">
+              <div>
+                <div class="input-group margin-t-5">
+                  <span class="input-group-addon">名称:</span>
+                  <input id="addName" type="text" class="form-control" />
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button id="Save" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!--弹出框 新增权限 end-->
+    <!--弹出框 新增根节点权限 start-->
+    <div class="modal fade" id="addOperation-dialog-root" tabindex="-1" role="dialog" aria-labelledby="rootModalLabel">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content radius_5">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">新增根目录</h4>
+          </div>
+          <div class="modal-body">
+            <div group="" item="add">
+              <div>
+                <div class="input-group margin-t-5">
+                  <span class="input-group-addon">名称:</span>
+                  <input id="addRootName" type="text" class="form-control" />
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button id="rootSave" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!--弹出框 新增根节点权限 end-->
+     <!--弹出框 移动根节点权限 start-->
+    <div class="modal fade" id="addOperation-dialog-move" tabindex="-1" role="dialog" aria-labelledby="moveModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content radius_5">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">改变学科类别</h4>
+          </div>
+          <div class="modal-body">
+            <div group="" item="move">
+              <div>
+                <div class="input-group margin-t-5">
+                  <span class="input-group-addon">移动至:</span>
+                  <div id="move-tree" style="height: 300px; overflow: auto;"></div>
+
+                </div>
+                 
+
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button id="moveSave" type="button" class="btn btn-primary">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--弹出框 移动根节点权限 end-->
+
+	<!-- js文件-->
+
+	<!--bootstrap基础引用 start-->
+    <script type="text/javascript" src="public/bootstrap/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="public/bootstrap/bootstrap.min.js"></script>
+    <!--bootstrap基础引用 end-->
+    <script type="text/javascript" src="public/plugins/bootstrap-treeview/bootstrap-treeview.js"></script>
+    <!--bootstrap-treeview end-->
+    <script type="text/javascript" src="public/plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
+    <!--bootstrap-dialog end-->
+    <script type="text/javascript" src="public/js/customPlugin.js"></script>
+    <!-- mainFunction.js start-->
+    <script type="text/javascript" src="public/js/mainFunction.js"></script>
+  </body>
+
+</html>
