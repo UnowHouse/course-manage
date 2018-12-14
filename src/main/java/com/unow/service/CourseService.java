@@ -61,7 +61,7 @@ public class CourseService {
             courseMapper.updateParentStatus(nodeBody.getPid(),true);
         }
         if(insert != 1){
-            throw new MyException(ExceptionEnum.ERROR_INSERT_NODES)
+            throw new MyException(ExceptionEnum.ERROR_INSERT_NODES);
         }
         return course;
     }
