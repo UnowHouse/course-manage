@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="public/bootstrap/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/plugins/bootstrap-dialog/bootstrap-dialog.min.css">
+
+    <title>app task</title>
+    <script>
+        $.ajax({
+            url:'manage/isLogin',
+            type:'get',
+            success:function(){
+                window.location.href='manage.html'
+            }
+        })
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="login_container container">
+            <div class="form">
+                <h2>登录</h2>
+                <div class="cont">
+                    <label>
+                        <span>用户名</span><input type="text" name="userName" id="username" class="input login_input">
+                        <div class="line"></div>
+                    </label>
+                    <label>
+                        <span>密码</span><input type="password" name="userPassword" id="password" class="input login_input">
+                        <div class="line"></div>
+                    </label>
+                    <label>
+                        <button class="btn" id="login_btn">登录</button>
+                    </label>
+                </div>
+            </div>
+
+            <div class="tab">
+                <span>没有账号？</span>
+                <a href="javascript:void(0)" id="to_reg">注册</a>
+            </div>
+        </div>
+        <div class="register_container container">
+            <div class="form">
+                <h2>注册</h2>
+                <div class="cont">
+                    <label>
+                        <span>用户名</span><input type="text" name="userName" id="register_username" class="input reg_input">
+                        <div class="line"></div>
+                    </label>
+                    <label>
+                        <span>密码</span><input type="password" name="userPassword" id="register_password" class="input reg_input">
+                        <div class="line"></div>
+                    </label>
+                    <label>
+                        <span>确认密码</span><input type="password" id="register_password_agian" name="userPasswordConfirm" class="input reg_input">
+                        <div class="line"></div>
+                    </label>
+                    <label>
+                        <button class="btn" id="reg_btn">注册</button>
+                    </label>
+                </div>
+            </div>
+
+            <div class="tab">
+                <span>已注册？</span>
+                <a href="javascript:void(0)" id="to_login">登录</a>
+            </div>
+        </div>
+    </div>
+    <script src="public/js/login_register.js"></script>
+
+</body>
+</html>

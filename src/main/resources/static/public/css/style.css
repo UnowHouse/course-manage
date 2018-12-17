@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: -webkit-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%)
+}
+
+a {
+    text-decoration: none;
+}
+
+.box {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    background:#fff;
+    width: 450px;
+    height: 500px;
+    overflow: auto;
+    box-shadow: 2px 1px 6px #CC9999;
+    flex-direction: column;
+    position: absolute;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        left: 910px;
+    }
+
+    20% {
+        opacity: 0.2;
+        left: 728px;
+    }
+
+    40% {
+        opacity: 0.4;
+        left: 546px;
+    }
+
+    60% {
+        opacity: 0.6;
+        left: 364px;
+    }
+
+    80% {
+        opacity: 0.8;
+        left: 182px;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn .3s linear forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        left: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+        left: 182px;
+    }
+
+    40% {
+        opacity: 0.6;
+        left: 364px;
+    }
+
+    60% {
+        opacity: 0.4;
+        left: 546px;
+    }
+
+    80% {
+        opacity: 0.2;
+        left: 728px;
+    }
+
+    100% {
+        opacity: 0;
+        left: 910px;
+    }
+}
+
+.fadeOut {
+    animation: fadeOut .3s linear forwards;
+}
+
+.register_container {
+    opacity: 0;
+    right: 0;
+    top: 0;
+    left: 910px;
+    bottom: 0;
+    margin: auto;
+}
+
+.login_container {
+    opacity: 1;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.form {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form h2 {
+    flex: 1;
+    align-self: center;
+    font-size: 40px;
+    line-height: 80px;
+    color: #0084FF
+}
+
+.form .cont {
+    flex: 5;
+    align-self: center;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.form .cont label {
+    position: relative;
+    align-self: center;
+    width: 60%;
+    height: 20%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+@keyframes scaleFont {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(.9);
+        bottom: 40%;
+    }
+    100% {
+        transform: scale(.8);
+        bottom: 60%;
+    }
+}
+
+.form .cont label span {
+    position: absolute;
+    font-size: 20px;
+    display: inline;
+    bottom: 8%;
+    animation: scaleFont 0.3s ease;
+    animation-fill-mode: forwards; /* 保存动画最后状态 */
+}
+
+.form .input {
+    border: none;
+    border-bottom: 1px solid #e6e6e6;
+    outline: none;
+    width: 100%;
+    align-self: flex-end;
+    height: 30px;
+    font-size: 20px;
+}
+
+.form .line {
+    width: 0;
+    position: absolute;
+    background-color: blue;
+    height: 2px;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: width .3s linear;
+}
+
+.form .btn {
+    border: none;
+    width: 100%;
+    height: 80%;
+    background: #0084FF;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 11px;
+    align-self: flex-end;
+}
+
+.form .btn:hover {
+    background-color: #005eb6;
+    cursor: pointer;
+}
+
+.tab {
+    height: 12%;
+    width: 100%;
+    border-top: 1px solid #EBEBEB;
+    background: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}

@@ -23,6 +23,19 @@
 			cursor:pointer;
 		}
 	</style>
+
+    <!--bootstrap基础引用 start-->
+  <script type="text/javascript" src="public/bootstrap/jquery-3.1.1.min.js"></script>
+  <script>
+    $.ajax({
+      url:'manage/isLogin',
+      type:'get',
+      error:function(){
+//          window.location.href='entrance.html'
+      }
+    })
+
+  </script>
 </head>
 	
   <body>
@@ -218,18 +231,21 @@
     <!--弹出框 移动根节点权限 end-->
 
 	<!-- js文件-->
-
-	<!--bootstrap基础引用 start-->
-    <script type="text/javascript" src="public/bootstrap/jquery-3.1.1.min.js"></script>
+    <!--bootstrap基础引用 start-->
     <script type="text/javascript" src="public/bootstrap/bootstrap.min.js"></script>
     <!--bootstrap基础引用 end-->
+    <!--bootstrap-treeview start-->
     <script type="text/javascript" src="public/plugins/bootstrap-treeview/bootstrap-treeview.js"></script>
     <!--bootstrap-treeview end-->
+    <!--bootstrap-dialog start-->
     <script type="text/javascript" src="public/plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
     <!--bootstrap-dialog end-->
+    <!-- customPlugin.js start-->
     <script type="text/javascript" src="public/js/customPlugin.js"></script>
+    <!-- customPlugin.js end-->
     <!-- mainFunction.js start-->
     <script type="text/javascript" src="public/js/mainFunction.js"></script>
+    <!-- mainFunction.js end-->
   </body>
 
 </html>
