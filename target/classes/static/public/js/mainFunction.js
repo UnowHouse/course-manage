@@ -10,6 +10,7 @@
 	addNodeApi = 'http://localhost:8080/api/add';
 	updateApi = 'http://localhost:8080/api/edit';
 	deleteApi = 'http://localhost:8080/api/delete';
+	logoutApi = 'http://localhost:8080/manager/logout';
 
 	var main = {
         currentPage:1,
@@ -367,6 +368,21 @@
                 showMsg(parentNode[0].nodes);
             }
         });
+
+	$("#logout").click(function(){
+		console.log(1);
+		$.ajax({
+			url:logoutApi,
+			type:'get',
+			success:function() {
+                window.location.href = 'entrance.html';
+            },
+			error:function(){
+				$.showMsgText("错误-500");
+			}
+		})
+	});
+
 	}
 
 })(jQuery);

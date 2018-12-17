@@ -11,8 +11,9 @@
     <title>app task</title>
     <script>
         $.ajax({
-            url:'manage/isLogin',
+            url:'manager/isLogin',
             type:'get',
+            async:false,
             success:function(){
                 window.location.href='manage.html'
             }
@@ -26,11 +27,11 @@
                 <h2>登录</h2>
                 <div class="cont">
                     <label>
-                        <span>用户名</span><input type="text" name="userName" id="username" class="input login_input">
+                        <span>用户名</span><input type="text" name="userName" id="login_username" class="input login_input">
                         <div class="line"></div>
                     </label>
                     <label>
-                        <span>密码</span><input type="password" name="userPassword" id="password" class="input login_input">
+                        <span>密码</span><input type="password" name="userPassword" id="login_password" class="input login_input">
                         <div class="line"></div>
                     </label>
                     <label>

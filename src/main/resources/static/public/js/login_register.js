@@ -1,7 +1,7 @@
 
 // 登录按钮的实现
 $("#login_btn").click(function () {
-    if ( $("#username").val() == ""||
+    if ( $("#login_username").val() == ""||
         $("#login_password").val() =="")
     {
         alert("请将信息填写完整");
@@ -9,9 +9,9 @@ $("#login_btn").click(function () {
     }
     $.ajax({
         type:"POST",
-        url:"manage/login",
+        url:"manager/login",
         data:{
-            username:$("#username").val(),
+            username:$("#login_username").val(),
             password:$("#login_password").val()
         },
         success:function(data){
@@ -38,7 +38,7 @@ $("#reg_btn").click(function () {
     else{
         $.ajax({
             type:"POST",
-            url:"manage/register",
+            url:"manager/register",
             data:{
                 username:$("#register_username").val(),
                 password:$("#register_password").val(),
