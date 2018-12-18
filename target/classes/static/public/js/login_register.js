@@ -42,6 +42,7 @@ $("#reg_btn").click(function () {
             data:{
                 username:$("#register_username").val(),
                 password:$("#register_password").val(),
+                sickname:$("#register_sickname").val()
             },
             success:function(data){
                 alert("注册成功！")

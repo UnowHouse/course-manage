@@ -27,10 +27,14 @@
     <!--bootstrap基础引用 start-->
   <script type="text/javascript" src="public/bootstrap/jquery-3.1.1.min.js"></script>
   <script>
+    var sickname;
     $.ajax({
       url:'manager/isLogin',
       type:'get',
       async:false,
+      success:function(data){
+        sickname=data.user;
+      },
       error:function(){
           window.location.href='entrance.html'
       }
@@ -56,7 +60,7 @@
           <ul class="nav navbar-nav navbar-right">
   <!--           <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li> -->
-            <li><a href="#">about me</a></li>
+            <li><a id="sickname" href="#">about me</a></li>
             <li id="logout"><a href="javascript:void(0)">退出</a></li>
           </ul>
         </div>
@@ -247,6 +251,11 @@
     <!-- mainFunction.js start-->
     <script type="text/javascript" src="public/js/mainFunction.js"></script>
     <!-- mainFunction.js end-->
+    <script>
+      $("#sickname").click(function(){
+        $("#sickname").text(sickname);
+      })
+    </script>
   </body>
 
 </html>

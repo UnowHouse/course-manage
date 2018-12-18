@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /*
  *  @项目名：  course-manager 
@@ -46,8 +47,9 @@ public class ManagerController {
      */
     @PostMapping("register")
     public ResponseEntity<Void> register(@RequestParam(name = "username")String username,
-                                         @RequestParam(name = "password")String password){
-        managerService.registerService(username,password);
+                                         @RequestParam(name = "password")String password,
+                                         @RequestParam(name = "sickname",defaultValue = "小明")String sickname){
+        managerService.registerService(username,password,sickname);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -57,9 +59,9 @@ public class ManagerController {
      * @return
      */
     @GetMapping("isLogin")
-    public ResponseEntity<String> detectLogin(HttpSession session){
-        managerService.isLogin(session);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<Map<String,String>> detectLogin(HttpSession session){
+        Map<String, String> user = managerService.isLogin(session);
+        return ResponseEntity.ok(user);
     }
 
     /**

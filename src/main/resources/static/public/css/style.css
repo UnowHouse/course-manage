@@ -20,7 +20,7 @@ a {
     display: flex;
     background:#fff;
     width: 450px;
-    height: 500px;
+    height: 600px;
     overflow: auto;
     box-shadow: 2px 1px 6px #CC9999;
     flex-direction: column;

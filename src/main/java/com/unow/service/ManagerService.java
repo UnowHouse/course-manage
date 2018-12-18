@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  *  @项目名：  course-manager 
@@ -29,11 +31,11 @@ public class ManagerService {
         if(manager == null){
             throw new MyException(ExceptionEnum.ERROR_LOGIN);
         }
-        session.setAttribute("user",manager.getUsername());
+        session.setAttribute("user",manager.getSickname());
     }
 
 
-    public void registerService(String username, String password) {
+    public void registerService(String username, String password,String sickname) {
 
         Manager manager = new Manager();
         manager.setUsername(username);
@@ -42,6 +44,7 @@ public class ManagerService {
             throw new MyException(ExceptionEnum.ERROR_REGISTER);
         }
         manager.setPassword(password);
+        manager.setSickname(sickname);
         int insert = managerMapper.insert(manager);
         if(insert != 1){
             throw new MyException(ExceptionEnum.ERROR_INSERT_MANAGER);
@@ -49,12 +52,15 @@ public class ManagerService {
 
     }
 
-    public void isLogin(HttpSession session) {
+    public Map<String,String> isLogin(HttpSession session) {
 
-        String username = (String) session.getAttribute("user");
-        if(username == null){
+        String sickname = (String) session.getAttribute("user");
+        if(sickname == null){
             throw new MyException(ExceptionEnum.NOT_LOGIN);
         }
+        Map<String,String> map = new HashMap<>();
+        map.put("user",sickname);
+        return map;
 
     }
 
