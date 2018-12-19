@@ -70,6 +70,8 @@ public class CourseController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+//    @GetMapping("search")
+//    public ResponseEntity<List<Course>>
 
 }
 

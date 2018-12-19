@@ -63,7 +63,6 @@
 			sendRequest(url,{pid:pid},true,'get'
 			,function(data){
 				$.each(data,function(index,val){
-
 					if(show){
 						$('#left-tree').treeview('addNode',[val,parentNode]);
 						$('#editName').val(parentNode[0].text);
@@ -75,7 +74,7 @@
 					}
 				});             
 			},function(failue){
-				$.showMsgText(failure);
+				$.showMsgText(failue.msg);
 			});
 		}
 	}
@@ -184,7 +183,10 @@
 					$('#editName').val(node.text);
 					$("#headTitle").text(node.text);
 					if(node){
-						main.totalPage=Math.ceil(node.length/main.rows);
+						if(node.nodes)
+							main.totalPage=Math.ceil(node.nodes.length/main.rows);
+						else
+                            main.totalPage=1
 						showMsg(node.nodes);
 					}
 				},
@@ -208,6 +210,7 @@
 		var parentNode = $('#left-tree').treeview('getSelected');
 		$.each(list,function(data,val){
 			$tr = $("<tr></tr>");
+            row0 = "<td>"+val.id+"</td>"; $tr.append(row0)
 			row1 = "<td>"+getParents(parentNode,[parentNode[0].text])+"</td>"; $tr.append(row1)
 			row2 = "<td>"+val.text+"</td>"; $tr.append(row2)
 			row3 = "<td>"+timestampToTime(val.createTime)+"</td>"; $tr.append(row3)
@@ -249,7 +252,7 @@
 		$('#Edit').click(function(){
 			var node = $('#left-tree').treeview('getSelected');
 			if(node.length==0){
-				$.showMsgText("请选择一个学科")
+				$.showMsgText("请选择一门学科")
 			}
 			updateNode(updateApi,node);
 		});
@@ -257,7 +260,7 @@
 		$("#btnAdd").click(function(){
 			var node = $('#left-tree').treeview('getSelected');
 			if (node.length == 0) {
-				$.showMsgText('请选择节点');
+				$.showMsgText('请选择一门学科');
 				return;
 			}
 			$('#addName').val('');
@@ -369,19 +372,29 @@
             }
         });
 
-	$("#logout").click(function(){
-		console.log(1);
-		$.ajax({
-			url:logoutApi,
-			type:'get',
-			success:function() {
-                window.location.href = 'entrance.html';
-            },
-			error:function(){
-				$.showMsgText("错误-500");
+		$("#logout").click(function(){
+			console.log(1);
+			$.ajax({
+				url:logoutApi,
+				type:'get',
+				success:function() {
+					window.location.href = 'entrance.html';
+				},
+				error:function(){
+					$.showMsgText("错误-500");
+				}
+			})
+		});
+        $('#input-select-node').change(function(){
+            val = $('#input-select-node').val()
+			if(val==""){
+                $('#left-tree').treeview('clearSearch');
 			}
-		})
-	});
+		});
+		$("#query").click(function(){
+            result = $('#left-tree').treeview('search', [ $('#input-select-node').val(), { ignoreCase: true, exactMatch: false } ]);
+			console.log(result);
+		});
 
 	}
 

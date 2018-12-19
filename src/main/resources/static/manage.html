@@ -114,12 +114,23 @@
           <button id="btnAdd" type="button" class="btn btn-primary btn-md " >
             <span class="glyphicon glyphicon-plus"></span> 新增子学科
           </button>
+
+
+            <form class="navbar-form navbar-right">
+              <input id="input-select-node" type="text" class="form-control" placeholder="课程学科名称">
+              <button id="query" type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-search"></span> Search
+              </button>
+            </form>
+
+
           <h2 class="sub-header"></h2>
           <div class="table-responsive">
             <table class="table table-hover">
-              <caption style="text-align: center;">子课程学科详情</caption>
+              <caption style="text-align: center;font-size: 25px;">子课程学科详情</caption>
               <thead>
                 <tr>
+                  <th>id</th>
                   <th>学科范畴</th>
                   <th>课程学科名</th>
                   <th>创建时间</th>
@@ -132,15 +143,21 @@
               </tbody>
             </table>
 
-                <ul class="pager">
-                  <li  id="pre"><a href="#">上一页</a></li>
-                  <li>当前页：<span id="viewpage">1</span></li>
-                  <li  id="next"><a href="#">下一页</a></li>
-                </ul>
+            <ul class="pager">
+              <li  id="pre"><a href="#">上一页</a></li>
+              <li>当前页：<span id="viewpage">1</span></li>
+              <li  id="next"><a href="#">下一页</a></li>
+            </ul>
 
           </div>
+          <footer class="navbar-fixed-bottom">
+            <p align="center" style="margin-top: 20px;color:#878B91;">
+              课程学科管理系统 &copy;2018 Unow
+            </p>
+          </footer>
         </div>
       </div>
+
     </div>
     <!--弹出框 新增权限 start-->
     <div class="modal fade" id="addOperation-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
