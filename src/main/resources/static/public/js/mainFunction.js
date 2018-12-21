@@ -6,11 +6,12 @@
  */
 
 (function($){
-	listApi = 'http://localhost:8080/api/list';
-	addNodeApi = 'http://localhost:8080/api/add';
-	updateApi = 'http://localhost:8080/api/edit';
-	deleteApi = 'http://localhost:8080/api/delete';
-	logoutApi = 'http://localhost:8080/manager/logout';
+	server='http://localhost:8080/'
+	listApi = server+'api/list';
+	addNodeApi = server+'api/add';
+	updateApi = server+'api/edit';
+	deleteApi = server+'api/delete';
+	logoutApi = server+'manager/logout';
 
 	var main = {
         currentPage:1,
@@ -352,6 +353,7 @@
 				$.showMsgText("修改失败！");
 			}); 
 		});
+
         //翻页-上一页
         $("#pre").click(function(){
             if(main.currentPage>1){
